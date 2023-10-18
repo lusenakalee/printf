@@ -2,7 +2,7 @@
 
 /*********************PRINT POINTER*******************/
 /**
- * print pointer - prints value of apointer variable
+ * print_pointer - prints value of apointer variable
  * @types: list of arguments
  * @buffer buffer array to handle pointer
  * @flags: calculates active flags
@@ -16,7 +16,7 @@ int print_pointer(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	char extra_c = 0, padd = ' ';
-	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; lenth = 2, for '0x'*/
+	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length = 2, for '0x'*/
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
@@ -156,7 +156,7 @@ int print_rot13string(va_list types, char buffer[],
 	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
-	UNUSED(size);
+	UNUSED(precision);
 	UNUSED(size);
 
 	if (str == NULL)
@@ -164,12 +164,15 @@ int print_rot13string(va_list types, char buffer[],
 	for (i = 0; str[i]; i++)
 
 	{
-		for (j = 0; in[j] == str[i])
+		for (j = 0; in[j]; j++)
 		{
-			x = out[j];
-			write(1, &x, 1);
-			count++;
-			break;
+			if (in[j] == str[i])
+			{
+				x = out[j];
+				write(1, &x, 1);
+				count++;
+				break;
+			}
 		}
 	}
 	if (!in[j])
